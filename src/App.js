@@ -13,7 +13,31 @@ const App = () => {
    const [newRating, setNewRating] = useState('');
    const [newReview, setNewReview] = useState('');
    const [newReviewPerson, setNewReviewPerson] = useState('');
-   const [movies, setMovies] = useState([]);
+   const [gameReviews, setGameReviews] = useState([]);
+
+   const handleNewReviewFormSubmit = (event) => {
+      event.preventDefault();
+      axios.post(
+         'http://localhost/3000/reviews',
+         {
+            title:newTitle,
+            image:newImage,
+            releaseDate:newReleaseDate,
+            platform:newPlatform,
+            category:newCategory,
+            rating:newRating,
+            review:newReview,
+            reviewPerson:newReviewPerson,
+         }
+      ).then(() => {
+         axios
+            .get('http://localhost/3000/reviews')
+            .then((response) => {
+               setGameReviews(response.data)
+            })
+      })
+   }
+
 //EVENT HANDLERS
    const handleNewTitle = (event) => {
       setNewTitle(event.target.value);
@@ -44,7 +68,7 @@ const App = () => {
       <>
       <h1> 🎮 Hello World 🕹 </h1>
 {/*FORM DOCUMENT FOR NEW GAME REVIEWS*/}
-      <form>
+      <form onSubmit={handleNewReviewFormSubmit}>
          <p>
             <label>Title:</label>
             <input
