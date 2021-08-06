@@ -18,7 +18,7 @@ const App = () => {
    const handleNewReviewFormSubmit = (event) => {
       event.preventDefault();
       axios.post(
-         'http://localhost/3000/reviews',
+         'http://localhost:3000/reviews',
          {
             title:newTitle,
             image:newImage,
@@ -31,7 +31,7 @@ const App = () => {
          }
       ).then(() => {
          axios
-            .get('http://localhost/3000/reviews')
+            .get('http://localhost:3000/reviews')
             .then((response) => {
                setGameReviews(response.data)
             })
