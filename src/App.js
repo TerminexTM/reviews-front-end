@@ -15,6 +15,17 @@ const App = () => {
    const [newReviewPerson, setNewReviewPerson] = useState('');
    const [gameReviews, setGameReviews] = useState([]);
 
+
+//USEEFFECT SETS INITIAL STATE ARRAY
+   useEffect(() => {
+      axios
+         .get('https://game-review-back-end.herokuapp.com/reviews')
+         .then((response) => {
+            setGameReviews(response.data)
+         })
+   }, [])
+
+//SUBMIT CREATE NEW FORM HANDLER
    const handleNewReviewFormSubmit = (event) => {
       event.preventDefault();
       axios.post(
@@ -38,7 +49,7 @@ const App = () => {
       })
    }
 
-//EVENT HANDLERS
+//EVENT HANDLERS FOR FORM
    const handleNewTitle = (event) => {
       setNewTitle(event.target.value);
    }
@@ -88,6 +99,13 @@ const App = () => {
             <input
                type="text"
                onChange={handleNewPlatform}
+            />
+         </p>
+         <p>
+            <label>Release Date: </label>
+            <input
+               type="text"
+               onChange={handleNewReleaseDate}
             />
          </p>
          <p>
