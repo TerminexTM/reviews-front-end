@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+form {
+   display: table;
+}
+form > p {
+   display: table-row;
+}
+form > p > label {
+   display: table-cell;
+}
+form > p > textarea {
+   display: table-cell;
+}
+form > p > input {
+   display: table-cell;
+}
