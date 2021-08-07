@@ -48,7 +48,17 @@ const App = () => {
             })
       })
    }
-
+   const handleDelete = (reviewInfo) => {
+      axios
+         .delete(`https://game-review-back-end.herokuapp.com/reviews/${reviewInfo._id}`)
+         .then(() => {
+            axios
+               .get('https://game-review-back-end.herokuapp.com/reviews')
+               .then((response) => {
+                  setGameReviews(response.data)
+               })
+         })
+   }
 //EVENT HANDLERS FOR FORM
    const handleNewTitle = (event) => {
       setNewTitle(event.target.value);
