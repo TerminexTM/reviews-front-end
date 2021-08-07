@@ -15,6 +15,8 @@ const App = () => {
    const [newReviewPerson, setNewReviewPerson] = useState(''); //form item
    const [gameReviews, setGameReviews] = useState([]); //populated data for map
 
+//BUTTONS STATES
+   const [viewNewForm, setViewNewForm] = useState(false);
 
 
 //USEEFFECT SETS INITIAL STATE ARRAY
@@ -64,6 +66,7 @@ const App = () => {
    }
 //CREATE EDIT
    const handleEdit = (event, reviewInfo) => {
+      event.preventDefault();
       axios
          .put(
             `https://game-review-back-end.herokuapp.com/reviews/${reviewInfo._id}`,
@@ -194,14 +197,96 @@ const App = () => {
                   <p>{review.review}</p>
                   <p>{review.reviewPerson}</p>
                </div>
+{/*JSX BUTTON FOR DELETE AND EDIT ROUTES*/}
+            {/*DELETE BUTTON*/}
                <button onClick={() =>
                  {handleDelete(review)}}>Delete Review</button>
                  <br/>
+            {/*EDIT FORM*/}
+               <form onSubmit={ (event) => { handleEdit(event, review) } }>
+                  <p>
+                     <label>Title:</label>
+                     <input
+                        type="text"
+                        onChange={handleNewTitle}
+                        defaultValue={review.title}
+                     />
+                  </p>
+                  <p>
+                     <label>Image:</label>
+                     <input
+                        type="text"
+                        onChange={handleNewImage}
+                        defaultValue={review.image}
+                     />
+                  </p>
+                  <p>
+                     <label>Platforms:</label>
+                     <input
+                        type="text"
+                        onChange={handleNewPlatform}
+                        defaultValue={review.platform}
+                     />
+                  </p>
+                  <p>
+                     <label>Release Date: </label>
+                     <input
+                        type="text"
+                        onChange={handleNewReleaseDate}
+                        defaultValue={review.releaseDate}
+                     />
+                  </p>
+                  <p>
+                     <label>Genre:</label>
+                     <input
+                        type="text"
+                        onChange={handleNewCategory}
+                        defaultValue={review.category}
+                     />
+                  </p>
+                  <p>
+                     <label>Rating:</label>
+                     <input
+                        type="text"
+                        onChange={handleNewRating}
+                        defaultValue={review.rating}
+                     />
+                  </p>
+                  <p>
+                     <label>Review:</label>
+                     <br />
+                     <textarea
+                        type="text"
+                        onChange={handleNewReview}
+                        rows="10"
+                        cols="60"
+                        defaultValue={review.review}
+                     >
+                     </textarea>
+                     <br />
+                  </p>
+                  <p>
+                     <label>Reviewer:</label>
+                     <input
+                        type="text"
+                        onChange={handleNewReviewPerson}
+                        defaultValue={review.reviewPerson}
+                     />
+                  </p>
+                  <input
+                     type="submit"
+                     value="Submit Edits"
+                  />
+               </form>
+               {/*HERE END THE EDIT FORM*/}
               </div>
+              //HERE ENDS THE GREATER CARD BODY
             )
          })}
       </div>
+      {/*HERE ENDS THE MAP CONTAINER*/}
       </>
+      //HERE ENDS THE RETURN JSX
    )
 }
 /*=============================================*/
