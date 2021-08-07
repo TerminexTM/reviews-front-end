@@ -5,15 +5,16 @@ import axios from 'axios'
 //APP TOP LEVEL COMPONENT
 const App = () => {
 //STATES SETUP
-   const [newTitle, setNewTitle] = useState('');
-   const [newImage, setNewImage] = useState('');
-   const [newReleaseDate, setNewReleaseDate] = useState('');
-   const [newPlatform, setNewPlatform] = useState('');
-   const [newCategory, setNewCategory] = useState('');
-   const [newRating, setNewRating] = useState('');
-   const [newReview, setNewReview] = useState('');
-   const [newReviewPerson, setNewReviewPerson] = useState('');
-   const [gameReviews, setGameReviews] = useState([]);
+   const [newTitle, setNewTitle] = useState(''); //form item
+   const [newImage, setNewImage] = useState(''); //form item
+   const [newReleaseDate, setNewReleaseDate] = useState(''); //form item
+   const [newPlatform, setNewPlatform] = useState(''); //form item
+   const [newCategory, setNewCategory] = useState(''); //form item
+   const [newRating, setNewRating] = useState(''); //form item
+   const [newReview, setNewReview] = useState(''); //form item
+   const [newReviewPerson, setNewReviewPerson] = useState(''); //form item
+   const [gameReviews, setGameReviews] = useState([]); //populated data for map
+
 
 
 //USEEFFECT SETS INITIAL STATE ARRAY
@@ -24,6 +25,15 @@ const App = () => {
             setGameReviews(response.data)
          })
    }, [])
+
+//GET DATA WORKS LIKE A PAGE REFRENCE FUNCTION FOR .THEN STATEMENTS!
+   const getData = () => {
+     axios
+     .get('https://game-review-back-end.herokuapp.com/reviews')
+     .then((response) => {
+        setGameReviews(response.data)
+     })
+   }
 
 //SUBMIT CREATE NEW FORM HANDLER
    const handleNewReviewFormSubmit = (event) => {
@@ -41,22 +51,34 @@ const App = () => {
             reviewPerson:newReviewPerson,
          }
       ).then(() => {
-         axios
-            .get('https://game-review-back-end.herokuapp.com/reviews')
-            .then((response) => {
-               setGameReviews(response.data)
-            })
+         getData();
       })
    }
+//DELETE FUNCTION HANDLER
    const handleDelete = (reviewInfo) => {
       axios
          .delete(`https://game-review-back-end.herokuapp.com/reviews/${reviewInfo._id}`)
          .then(() => {
-            axios
-               .get('https://game-review-back-end.herokuapp.com/reviews')
-               .then((response) => {
-                  setGameReviews(response.data)
-               })
+            getData();
+         })
+   }
+//CREATE EDIT
+   const handleEdit = (event, reviewInfo) => {
+      axios
+         .put(
+            `https://game-review-back-end.herokuapp.com/reviews/${reviewInfo._id}`,
+            {
+               title:newTitle || reviewInfo.title,
+               image:newImage || reviewInfo.image,
+               releaseDate:newReleaseDate || reviewInfo.releaseDate,
+               platform:newPlatform || reviewInfo.platform,
+               category:newCategory || reviewInfo.category,
+               rating:newRating || reviewInfo.rating,
+               review:newReview || reviewInfo.review,
+               reviewPerson:newReviewPerson || reviewInfo.reviewPerson,
+            }
+         ).then(() => {
+            getData();
          })
    }
 //EVENT HANDLERS FOR FORM
@@ -156,6 +178,8 @@ const App = () => {
             value="Submit Review"
          />
       </form>
+
+{/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
       <div>
          {gameReviews.map((review) => {
             return(
