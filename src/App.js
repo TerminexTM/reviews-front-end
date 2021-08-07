@@ -183,19 +183,19 @@ const App = () => {
       </form>
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
-      <div>
+      <div className="flexContainer">
          {gameReviews.map((review) => {
             return(
               <div className="greaterCard">
                <div className="limit">
                   <h1>{review.title}</h1>
                   <img src={review.image} alt="Bad Source"></img>
-                  <p>{review.releaseDate}</p>
-                  <p>{review.platform}</p>
-                  <p>{review.category}</p>
-                  <p>{review.rating}</p>
-                  <p>{review.review}</p>
-                  <p>{review.reviewPerson}</p>
+                  <p>Released: {review.releaseDate}</p>
+                  <p>Platform: {review.platform}</p>
+                  <p>Genre: {review.category}</p>
+                  <p>Review Score: {review.rating}</p>
+                  <p>Review: {review.review}</p>
+                  <p>Reviewed by: {review.reviewPerson}</p>
                </div>
 {/*JSX BUTTON FOR DELETE AND EDIT ROUTES*/}
             {/*DELETE BUTTON*/}
@@ -203,82 +203,84 @@ const App = () => {
                  {handleDelete(review)}}>Delete Review</button>
                  <br/>
             {/*EDIT FORM*/}
-               <form onSubmit={ (event) => { handleEdit(event, review) } }>
-                  <p>
-                     <label>Title:</label>
-                     <input
-                        type="text"
-                        onChange={handleNewTitle}
-                        defaultValue={review.title}
-                     />
-                  </p>
-                  <p>
-                     <label>Image:</label>
-                     <input
-                        type="text"
-                        onChange={handleNewImage}
-                        defaultValue={review.image}
-                     />
-                  </p>
-                  <p>
-                     <label>Platforms:</label>
-                     <input
-                        type="text"
-                        onChange={handleNewPlatform}
-                        defaultValue={review.platform}
-                     />
-                  </p>
-                  <p>
-                     <label>Release Date: </label>
-                     <input
-                        type="text"
-                        onChange={handleNewReleaseDate}
-                        defaultValue={review.releaseDate}
-                     />
-                  </p>
-                  <p>
-                     <label>Genre:</label>
-                     <input
-                        type="text"
-                        onChange={handleNewCategory}
-                        defaultValue={review.category}
-                     />
-                  </p>
-                  <p>
-                     <label>Rating:</label>
-                     <input
-                        type="text"
-                        onChange={handleNewRating}
-                        defaultValue={review.rating}
-                     />
-                  </p>
-                  <p>
-                     <label>Review:</label>
-                     <br />
-                     <textarea
-                        type="text"
-                        onChange={handleNewReview}
-                        rows="10"
-                        cols="60"
-                        defaultValue={review.review}
-                     >
-                     </textarea>
-                     <br />
-                  </p>
-                  <p>
-                     <label>Reviewer:</label>
-                     <input
-                        type="text"
-                        onChange={handleNewReviewPerson}
-                        defaultValue={review.reviewPerson}
-                     />
-                  </p>
-                  <input
-                     type="submit"
-                     value="Submit Edits"
-                  />
-               </form>
-               {/*HERE END THE EDIT FORM*/}
+                <details>
+                 <form onSubmit={ (event) => { handleEdit(event, review) } }>
+                    <p>
+                       <label>Title:</label>
+                       <input
+                          type="text"
+                          onChange={handleNewTitle}
+                          defaultValue={review.title}
+                       />
+                    </p>
+                    <p>
+                       <label>Image:</label>
+                       <input
+                          type="text"
+                          onChange={handleNewImage}
+                          defaultValue={review.image}
+                       />
+                    </p>
+                    <p>
+                       <label>Platforms:</label>
+                       <input
+                          type="text"
+                          onChange={handleNewPlatform}
+                          defaultValue={review.platform}
+                       />
+                    </p>
+                    <p>
+                       <label>Release Date: </label>
+                       <input
+                          type="text"
+                          onChange={handleNewReleaseDate}
+                          defaultValue={review.releaseDate}
+                       />
+                    </p>
+                    <p>
+                       <label>Genre:</label>
+                       <input
+                          type="text"
+                          onChange={handleNewCategory}
+                          defaultValue={review.category}
+                       />
+                    </p>
+                    <p>
+                       <label>Rating:</label>
+                       <input
+                          type="text"
+                          onChange={handleNewRating}
+                          defaultValue={review.rating}
+                       />
+                    </p>
+                    <p>
+                       <label>Review:</label>
+                       <br />
+                       <textarea
+                          type="text"
+                          onChange={handleNewReview}
+                          rows="10"
+                          cols="60"
+                          defaultValue={review.review}
+                       >
+                       </textarea>
+                       <br />
+                    </p>
+                    <p>
+                       <label>Reviewer:</label>
+                       <input
+                          type="text"
+                          onChange={handleNewReviewPerson}
+                          defaultValue={review.reviewPerson}
+                       />
+                    </p>
+                    <input
+                       type="submit"
+                       value="Submit Edits"
+                    />
+                 </form>
+                 {/*HERE END THE EDIT FORM*/}
+                </details>
               </div>
               //HERE ENDS THE GREATER CARD BODY
             )
