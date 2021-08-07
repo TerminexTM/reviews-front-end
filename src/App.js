@@ -149,6 +149,7 @@ const App = () => {
       <div>
          {gameReviews.map((review) => {
             return(
+              <div className="greaterCard">
                <div className="limit">
                   <h1>{review.title}</h1>
                   <img src={review.image} alt="Bad Source"></img>
@@ -159,6 +160,10 @@ const App = () => {
                   <p>{review.review}</p>
                   <p>{review.reviewPerson}</p>
                </div>
+               <button onClick={() =>
+                 {handleDelete(review)}}>Delete Review</button>
+                 <br/>
+              </div>
             )
          })}
       </div>
