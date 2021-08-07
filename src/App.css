@@ -51,3 +51,9 @@ form > p > textarea {
 form > p > input {
    display: table-cell;
 }
+.limit {
+   width: 25%;
+}
+img {
+   width: 100%;
+}

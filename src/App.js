@@ -146,6 +146,22 @@ const App = () => {
             value="Submit Review"
          />
       </form>
+      <div>
+         {gameReviews.map((review) => {
+            return(
+               <div className="limit">
+                  <h1>{review.title}</h1>
+                  <img src={review.image} alt="Bad Source"></img>
+                  <p>{review.releaseDate}</p>
+                  <p>{review.platform}</p>
+                  <p>{review.category}</p>
+                  <p>{review.rating}</p>
+                  <p>{review.review}</p>
+                  <p>{review.reviewPerson}</p>
+               </div>
+            )
+         })}
+      </div>
       </>
    )
 }
