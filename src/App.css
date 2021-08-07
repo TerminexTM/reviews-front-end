@@ -51,9 +51,29 @@ form > p > textarea {
 form > p > input {
    display: table-cell;
 }
+
+/* OUR CSS ============== */
+.flexContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
 .limit {
-   width: 25%;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #4b4550;
+  width: 300px;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  background-color: #4b4550;
+  box-shadow: 5px 5px 5px #9e96ab;
 }
 img {
-   width: 100%;
+   width: 250px;
+   height: auto;
+}
+p {
+  text-align: left;
+  padding-left: 10px;
 }
