@@ -120,7 +120,10 @@ const App = () => {
    const toggleEditForm = (event) => {
       setViewEditForm(event.target.value);
    }
-
+//CLOSE EDIT FORM BUTTONS
+   const closeEditFormModal = (event) => {
+      setViewEditForm('');
+   }
 //============================================\\
 
 //HTML/JSX SETUP
@@ -222,7 +225,6 @@ const App = () => {
             <button value={review._id} onClick={toggleEditForm}> Edit Review </button>
                 {viewEditForm === review._id &&
                    <div className="editModal">
-                  <button className='closeEditModal'>close</button>
                  <form onSubmit={ (event) => { handleEdit(event, review) } }>
                     <p>
                        <label>Title:</label>
@@ -298,6 +300,7 @@ const App = () => {
                        type="submit"
                        value="Submit Edits"
                     />
+                    <button onClick={closeEditFormModal}>close</button>
                  </form>
                  </div>
               }
