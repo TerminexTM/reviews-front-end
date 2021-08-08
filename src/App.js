@@ -207,7 +207,8 @@ const App = () => {
       {/*REVIEW MODAL*/}
       <div>
         <button onClick={() => setViewReviewModal(true)}>Show Review</button>
-        <Review viewReviewModal={viewReviewModal}/>
+        <Review title="Placeholder Title" onClose={() => setViewReviewModal(false)}
+        viewReviewModal={viewReviewModal}/>
       </div>
       {/*HERE ENDS REVIEW MODAL*/}
 
@@ -216,7 +217,7 @@ const App = () => {
          {gameReviews.map((review) => {
             return(
               <div className="greaterCard">
-               <div className="limit">
+               <div onClick={() => setViewReviewModal(true)} className="limit">
                   <h1>{review.title}</h1>
                   <img src={review.image} alt="Bad Source"></img>
                   <p>Released: {review.releaseDate}</p>
