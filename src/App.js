@@ -23,6 +23,8 @@ const App = () => {
 
    const [viewEditForm, setViewEditForm] = useState('');
 
+   const [viewHoverEvent, setViewHoverEvent] = useState('');
+
 //USEEFFECT SETS INITIAL STATE ARRAY
    useEffect(() => {
       axios
@@ -128,6 +130,11 @@ const App = () => {
    const closeEditFormModal = (event) => {
       setViewEditForm('');
    }
+//On Hover reaveal Card Info
+   const toggleOnHoverEvent = (event) => {
+      console.log(event.target);
+      setViewHoverEvent(event.target.id)
+   }
 //============================================\\
 
 //HTML/JSX SETUP
@@ -215,16 +222,18 @@ const App = () => {
       <div className="flexContainer">
          {gameReviews.map((review) => {
             return(
-              <div className="greaterCard">
-               <div className="limit">
-                  <h1>{review.title}</h1>
-                  <img src={review.image} alt="Bad Source"></img>
-                  <p>Released: {review.releaseDate}</p>
-                  <p>Platform: {review.platform}</p>
-                  <p>Genre: {review.category}</p>
-                  <p>Review Score: {review.rating}</p>
-                  <p>Review: {review.review}</p>
-                  <p>Reviewed by: {review.reviewPerson}</p>
+              <div id={review._id} className="greaterCard">
+               <div id={review._id} className="limit" onMouseOver={toggleOnHoverEvent}>
+                  <h1 id={review._id}>{review.title}</h1>
+                  <img id={review._id} src={review.image} alt="Bad Source"></img>
+                  <p id={review._id}>Review Score: {review.rating}</p>
+                  <p id={review._id}>Released: {review.releaseDate}</p>
+                  <div id={review._id} style= { viewHoverEvent === review._id ?  {'display' : 'block'} : {'display' : 'none'}}>
+                     <p id={review._id}>Platform: {review.platform}</p>
+                     <p id={review._id}>Genre: {review.category}</p>
+                     <p id={review._id}>Review: {review.review}</p>
+                     <p id={review._id}>Reviewed by: {review.reviewPerson}</p>
+                  </div>
                </div>
 {/*JSX BUTTON FOR DELETE AND EDIT ROUTES*/}
             {/*DELETE BUTTON*/}
