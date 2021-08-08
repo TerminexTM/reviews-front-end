@@ -112,11 +112,7 @@ const App = () => {
 
 //VIEW NEW FORM TOGGLE
    const toggleNewForm = (event) => {
-     if(viewNewForm == false){
-       setViewNewForm(true)
-     } else {
-       setViewNewForm(false)
-     }
+       setViewNewForm(!viewNewForm);
    }
 
 //HTML/JSX SETUP
