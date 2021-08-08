@@ -17,7 +17,7 @@ const App = () => {
 
 //BUTTONS STATES
    const [viewNewForm, setViewNewForm] = useState(false);
-
+   const [viewEditForm, setViewEditForm] = useState('');
 
 //USEEFFECT SETS INITIAL STATE ARRAY
    useEffect(() => {
@@ -67,6 +67,7 @@ const App = () => {
 //CREATE EDIT
    const handleEdit = (event, reviewInfo) => {
       event.preventDefault();
+      setViewEditForm('');
       axios
          .put(
             `https://game-review-back-end.herokuapp.com/reviews/${reviewInfo._id}`,
@@ -109,11 +110,18 @@ const App = () => {
    const handleNewReviewPerson = (event) => {
       setNewReviewPerson(event.target.value)
    }
+//BUTTON FUNCTIONS ===========================\\
 
 //VIEW NEW FORM TOGGLE
    const toggleNewForm = (event) => {
        setViewNewForm(!viewNewForm);
    }
+//VIEW EDIT FORM TOGGLE
+   const toggleEditForm = (event) => {
+      setViewEditForm(event.target.value);
+   }
+
+//============================================\\
 
 //HTML/JSX SETUP
    return (
@@ -211,7 +219,10 @@ const App = () => {
                  {handleDelete(review)}}>Delete Review</button>
                  <br/>
             {/*EDIT FORM*/}
-                <details>
+            <button value={review._id} onClick={toggleEditForm}> Edit Review </button>
+                {viewEditForm === review._id &&
+                   <div className="editModal">
+                  <button className='closeEditModal'>close</button>
                  <form onSubmit={ (event) => { handleEdit(event, review) } }>
                     <p>
                        <label>Title:</label>
@@ -283,12 +294,14 @@ const App = () => {
                        />
                     </p>
                     <input
+                       className = "editSub"
                        type="submit"
                        value="Submit Edits"
                     />
                  </form>
+                 </div>
+              }
                  {/*HERE END THE EDIT FORM*/}
-                </details>
               </div>
               //HERE ENDS THE GREATER CARD BODY
             )
