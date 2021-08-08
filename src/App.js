@@ -2,6 +2,7 @@
 import './App.css';
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import Review from "./components/review_modal"
 //APP TOP LEVEL COMPONENT
 const App = () => {
 //STATES SETUP
@@ -17,6 +18,7 @@ const App = () => {
 
 //BUTTONS STATES
    const [viewNewForm, setViewNewForm] = useState(false);
+   const [viewReviewModal, setViewReviewModal] = useState(false)
 
 
 //USEEFFECT SETS INITIAL STATE ARRAY
@@ -189,6 +191,12 @@ const App = () => {
             value="Submit Review"
          />
       </form>}
+      {/*REVIEW MODAL*/}
+      <div>
+        <button onClick={() => setViewReviewModal(true)}>Show Review</button>
+        <Review viewReviewModal={viewReviewModal}/>
+      </div>
+      {/*HERE ENDS REVIEW MODAL*/}
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
       <div className="flexContainer">
