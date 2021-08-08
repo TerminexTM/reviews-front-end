@@ -214,7 +214,8 @@ const App = () => {
       {/*REVIEW MODAL*/}
       <div>
         <button onClick={() => setViewReviewModal(true)}>Show Review</button>
-        <Review viewReviewModal={viewReviewModal}/>
+        <Review title="Placeholder Title" onClose={() => setViewReviewModal(false)}
+        viewReviewModal={viewReviewModal}/>
       </div>
       {/*HERE ENDS REVIEW MODAL*/}
 
@@ -222,8 +223,9 @@ const App = () => {
       <div className="flexContainer">
          {gameReviews.map((review) => {
             return(
+
               <div id={review._id} className="greaterCard">
-               <div id={review._id} className="limit" onMouseOver={toggleOnHoverEvent}>
+               <div id={review._id} onClick={() => setViewReviewModal(true)} className="limit" onMouseOver={toggleOnHoverEvent}>
                   <h1 id={review._id}>{review.title}</h1>
                   <img id={review._id} src={review.image} alt="Bad Source"></img>
                   <p id={review._id}>Review Score: {review.rating}</p>
