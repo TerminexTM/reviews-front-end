@@ -59,6 +59,30 @@ form > p > input {
    margin-left: 20px;
 }
 /* OUR CSS ============== */
+/* REVIEWS MODAL */
+.review-modal-box{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.review-modal-content{
+  width: 500px;
+  background-color: white;
+}
+.review-modal-footer{
+  padding: 10px;
+}
+.review-modal-body{
+  padding: 10px;
+  border-style: solid;
+}
+/*REVIEWS MODAL END */
 .flexContainer{
   display: flex;
   flex-wrap: wrap;
