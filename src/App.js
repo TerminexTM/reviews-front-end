@@ -109,11 +109,23 @@ const App = () => {
    const handleNewReviewPerson = (event) => {
       setNewReviewPerson(event.target.value)
    }
+
+//VIEW NEW FORM TOGGLE
+   const toggleNewForm = (event) => {
+     if(viewNewForm == false){
+       setViewNewForm(true)
+     } else {
+       setViewNewForm(false)
+     }
+   }
+
 //HTML/JSX SETUP
    return (
       <>
       <h1> 🎮 Hello World 🕹 </h1>
 {/*FORM DOCUMENT FOR NEW GAME REVIEWS*/}
+      <button onClick={toggleNewForm}> Add New Review! </button>
+      {viewNewForm &&
       <form onSubmit={handleNewReviewFormSubmit}>
          <p>
             <label>Title:</label>
@@ -180,7 +192,7 @@ const App = () => {
             type="submit"
             value="Submit Review"
          />
-      </form>
+      </form>}
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
       <div className="flexContainer">
