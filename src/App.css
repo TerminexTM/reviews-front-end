@@ -125,3 +125,7 @@ p {
    align-self: flex-start;
    margin-top: 29%;
 }
+#cardHoverPullDown {
+   display: none;
+   flex-wrap: wrap;
+}
