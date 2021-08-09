@@ -139,3 +139,9 @@ p {
 .buttonWrap {
    margin-top: 10px;
 }
+.limit > h1 {
+   font-size: 32px;
+}
+.star {
+   color: gold;
+}

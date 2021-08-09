@@ -49,14 +49,14 @@ const App = () => {
       axios.post(
          'https://game-review-back-end.herokuapp.com/reviews',
          {
-            title:newTitle,
-            image:newImage,
-            releaseDate:newReleaseDate,
-            platform:newPlatform,
-            category:newCategory,
-            rating:newRating,
-            review:newReview,
-            reviewPerson:newReviewPerson,
+            title:newTitle || `You've just made a Nick Banana`,
+            image:newImage || `https://i.imgur.com/uAdFO6v.png`,
+            releaseDate:newReleaseDate || 2020,
+            platform:newPlatform || 'PC',
+            category:newCategory || 'Horror',
+            rating:newRating || 1,
+            review:newReview || `Thats one good looking banana`,
+            reviewPerson:newReviewPerson || `You, the viewer.`,
          }
       ).then(() => {
          getData();
@@ -64,6 +64,7 @@ const App = () => {
    }
 //DELETE FUNCTION HANDLER
    const handleDelete = (reviewInfo) => {
+      setViewReviewModal('');
       axios
          .delete(`https://game-review-back-end.herokuapp.com/reviews/${reviewInfo._id}`)
          .then(() => {
@@ -73,6 +74,7 @@ const App = () => {
 //CREATE EDIT
    const handleEdit = (event, reviewInfo) => {
       event.preventDefault();
+
       setViewEditForm('');
       axios
          .put(
@@ -128,6 +130,7 @@ const App = () => {
    }
 //CLOSE EDIT FORM BUTTONS
    const closeEditFormModal = (event) => {
+      setViewReviewModal('');
       setViewEditForm('');
    }
 //On Hover reaveal Card Info
@@ -181,17 +184,33 @@ const App = () => {
          </p>
          <p>
             <label>Genre:</label>
-            <input
+            <select
                type="text"
                onChange={handleNewCategory}
-            />
+            >
+               <option>Horror</option>
+               <option>RPG</option>
+               <option>Shooter</option>
+               <option>Sports</option>
+               <option>Platformer</option>
+               <option>Adventure</option>
+               <option>Action</option>
+               <option>MOBA</option>
+               <option>Roguelike</option>
+            </select>
          </p>
          <p>
             <label>Rating:</label>
-            <input
+            <select
                type="text"
                onChange={handleNewRating}
-            />
+            >
+            <option value='1'>&#11088;</option>
+            <option value='2'>&#11088;&#11088;</option>
+            <option value='3'>&#11088;&#11088;&#11088;</option>
+            <option value='4'>&#11088;&#11088;&#11088;&#11088;</option>
+            <option value='5'>&#11088;&#11088;&#11088;&#11088;&#11088;</option>
+            </select>
          </p>
          <p>
             <label>Review:</label>
@@ -225,6 +244,10 @@ const App = () => {
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
       <div className="flexContainer">
          {gameReviews.map((review) => {
+            const stars = [];
+            for(let i=0;i<review.rating;i++){
+               stars.push(<i>&#11088;</i>);
+            }
             return(
 
               <div id={review._id} className="greaterCard">
@@ -234,7 +257,7 @@ const App = () => {
                viewReviewModal={viewReviewModal}/>
                   <h1 id={review._id}>{review.title}</h1>
                   <img id={review._id} src={review.image} alt="Bad Source"></img>
-                  <p id={review._id}>Review Score: {review.rating}</p>
+                  <p id={review._id}>Review Score: {stars}</p>
                   <p id={review._id}>Released: {review.releaseDate}</p>
                   <div id={review._id} className="dropDown" style= { viewHoverEvent === review._id ? {'visibility' : 'visible', "transition-duration": '.25s' } : {'visibility' : 'hidden', "font-size":"0px"}}>
                      <p id={review._id}>Platform: {review.platform}</p>
@@ -243,8 +266,7 @@ const App = () => {
                      <p id={review._id}>Reviewed by: {review.reviewPerson}</p>
                      {/*DELETE BUTTON*/}
                      <div className="buttonWrap">
-                        <button id={review._id} onClick={() =>
-                           {handleDelete(review)}}>Delete Review</button>
+                        <button id={review._id} onClick={() => handleDelete(review)}>Delete Review</button>
                         {/*EDIT BUTTON*/}
                         <button id={review._id} value={review._id} onClick={toggleEditForm}> Edit Review </button>
                      </div>
