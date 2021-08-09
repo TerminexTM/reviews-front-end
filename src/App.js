@@ -19,7 +19,7 @@ const App = () => {
 //BUTTONS STATES
    const [viewNewForm, setViewNewForm] = useState(false);
 
-   const [viewReviewModal, setViewReviewModal] = useState(false)
+   const [viewReviewModal, setViewReviewModal] = useState('')
 
    const [viewEditForm, setViewEditForm] = useState('');
 
@@ -212,11 +212,11 @@ const App = () => {
          />
       </form>}
       {/*REVIEW MODAL*/}
-      <div>
-        <button onClick={() => setViewReviewModal(true)}>Show Review</button>
-        <Review title="Placeholder Title" onClose={() => setViewReviewModal(false)}
+      {/*<div>
+        <button value={review._id} onClick={(event) => setViewReviewModal(event.target.value)}>Show Review</button>
+        <Review data={review} onClose={() => setViewReviewModal(false)}
         viewReviewModal={viewReviewModal}/>
-      </div>
+      </div>*/}
       {/*HERE ENDS REVIEW MODAL*/}
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
@@ -225,6 +225,7 @@ const App = () => {
             return(
 
               <div id={review._id} className="greaterCard">
+
                <div id={review._id} onClick={() => setViewReviewModal(true)} className="limit" onMouseOver={toggleOnHoverEvent}>
                   <h1 id={review._id}>{review.title}</h1>
                   <img id={review._id} src={review.image} alt="Bad Source"></img>
