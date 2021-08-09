@@ -74,13 +74,40 @@ form > p > input {
 .review-modal-content{
   width: 500px;
   background-color: white;
+  color: black;
+  border-style: solid;
+  border-radius: 5px;
 }
 .review-modal-footer{
   padding: 10px;
 }
+
+.review-modal-title{
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+}
+.review-modal-title > h2{
+  margin: 0;
+  padding-top: 10px;
+}
+.review-modal-info{
+  margin: 0 auto;
+  text-align: left;
+  padding-left: 10px;
+}
+.review-modal-review{
+  padding-right: 10px;
+  text-align: justify;
+  height: 350px;
+  overflow-y: scroll;
+}
+.review-modal-image{
+  border-radius: 0px;
+  padding-top: 10px;
+}
 .review-modal-body{
   padding: 10px;
-  border-style: solid;
 }
 /*REVIEWS MODAL END */
 .flexContainer{
@@ -101,13 +128,16 @@ form > p > input {
 }
 img {
    width: 250px;
-   height: auto;
+   height: 275px;
+   margin-bottom: 5px;
+
 }
 p {
   text-align: left;
   padding-left: 10px;
+  margin: 0px;
 }
-.editModal{
+.modalStyle{
    position: fixed;
    left: 0;
    top: 0;
@@ -118,14 +148,21 @@ p {
    align-items: center;
    justify-content: center;
 }
-.editModal > form {
+.modalStyle > form {
    background-color: rgb(0,0,0,.85);
 }
 .closeEditModal {
    align-self: flex-start;
    margin-top: 29%;
 }
-#cardHoverPullDown {
-   display: none;
-   flex-wrap: wrap;
+.limit:hover {
+   transition-duration: 5s;
+}
+.greaterCard {
+   height: 35rem;
+}
+.limit {
+}
+.buttonWrap {
+   margin-top: 10px;
 }

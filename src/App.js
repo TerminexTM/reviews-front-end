@@ -140,10 +140,11 @@ const App = () => {
 //HTML/JSX SETUP
    return (
       <>
-      <h1> 🎮 Hello World 🕹 </h1>
+      <h1> 🎮 Two Dudes Reviews 🕹 </h1>
 {/*FORM DOCUMENT FOR NEW GAME REVIEWS*/}
-      <button onClick={toggleNewForm}> Add New Review! </button>
+      <button onClick={toggleNewForm}> New Review </button>
       {viewNewForm &&
+         <div className="modalStyle">
       <form onSubmit={handleNewReviewFormSubmit}>
          <p>
             <label>Title:</label>
@@ -161,10 +162,15 @@ const App = () => {
          </p>
          <p>
             <label>Platforms:</label>
-            <input
-               type="text"
+            <select
                onChange={handleNewPlatform}
-            />
+            >
+            <option>PC</option>
+            <option>Mac</option>
+            <option>Xbox</option>
+            <option>Playstation</option>
+            <option>Switch</option>
+            </select>
          </p>
          <p>
             <label>Release Date: </label>
@@ -210,13 +216,10 @@ const App = () => {
             type="submit"
             value="Submit Review"
          />
-      </form>}
+         <button onClick={toggleNewForm}> Close </button>
+      </form>
+         </div>}
       {/*REVIEW MODAL*/}
-    <div>
-        <button value={review._id} onClick={(event) => setViewReviewModal(event.target.value)}>Show Review</button>
-        <Review data={review} onClose={() => setViewReviewModal(false)}
-        viewReviewModal={viewReviewModal}/>
-      </div>
       {/*HERE ENDS REVIEW MODAL*/}
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
@@ -226,27 +229,30 @@ const App = () => {
 
               <div id={review._id} className="greaterCard">
 
-               <div id={review._id} onClick={() => setViewReviewModal(true)} className="limit" onMouseOver={toggleOnHoverEvent}>
+               <div id={review._id} value={review._id} onClick={(event) => setViewReviewModal(event.target.id)} className="limit" onMouseOver={toggleOnHoverEvent}>
+               <Review data={review} onClose={() => setViewReviewModal(false)}
+               viewReviewModal={viewReviewModal}/>
                   <h1 id={review._id}>{review.title}</h1>
                   <img id={review._id} src={review.image} alt="Bad Source"></img>
                   <p id={review._id}>Review Score: {review.rating}</p>
                   <p id={review._id}>Released: {review.releaseDate}</p>
-                  <div id={review._id} style= { viewHoverEvent === review._id ?  {'display' : 'block'} : {'display' : 'none'}}>
+                  <div id={review._id} className="dropDown" style= { viewHoverEvent === review._id ? {'visibility' : 'visible', "transition-duration": '.25s' } : {'visibility' : 'hidden', "font-size":"0px"}}>
                      <p id={review._id}>Platform: {review.platform}</p>
                      <p id={review._id}>Genre: {review.category}</p>
-                     <p id={review._id}>Review: {review.review}</p>
+                     {/*<p id={review._id}>Review: {review.review}</p>*/}
                      <p id={review._id}>Reviewed by: {review.reviewPerson}</p>
+                     {/*DELETE BUTTON*/}
+                     <div className="buttonWrap">
+                        <button id={review._id} onClick={() =>
+                           {handleDelete(review)}}>Delete Review</button>
+                        {/*EDIT BUTTON*/}
+                        <button id={review._id} value={review._id} onClick={toggleEditForm}> Edit Review </button>
+                     </div>
                   </div>
                </div>
-{/*JSX BUTTON FOR DELETE AND EDIT ROUTES*/}
-            {/*DELETE BUTTON*/}
-               <button onClick={() =>
-                 {handleDelete(review)}}>Delete Review</button>
-                 <br/>
             {/*EDIT FORM*/}
-            <button value={review._id} onClick={toggleEditForm}> Edit Review </button>
                 {viewEditForm === review._id &&
-                   <div className="editModal">
+                   <div className="modalStyle">
                  <form onSubmit={ (event) => { handleEdit(event, review) } }>
                     <p>
                        <label>Title:</label>
