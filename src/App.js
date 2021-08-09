@@ -162,10 +162,15 @@ const App = () => {
          </p>
          <p>
             <label>Platforms:</label>
-            <input
-               type="text"
+            <select
                onChange={handleNewPlatform}
-            />
+            >
+            <option>PC</option>
+            <option>Mac</option>
+            <option>Xbox</option>
+            <option>Playstation</option>
+            <option>Switch</option>
+            </select>
          </p>
          <p>
             <label>Release Date: </label>
