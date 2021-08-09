@@ -7,6 +7,11 @@ const Review = (props) => {
     return null
   }
 
+  const stars = [];
+  for(let i=0;i<props.data.rating;i++){
+     stars.push(<i>&#11088;</i>);
+  }
+
   return(
     <>
     {  props.viewReviewModal === props.data._id &&
@@ -21,7 +26,7 @@ const Review = (props) => {
           <h4 className="review-modal-info">Reviewed by: {props.data.reviewPerson}</h4><br/>
           <p className="review-modal-review">{props.data.review}</p><br/>
             <h4 className="review-modal-info">
-            Review Score: {props.data.rating} out of 5</h4>
+            Review Score: {stars} </h4>
             <h4 className="review-modal-info">Platform: {props.data.platform}</h4>
             <h4 className="review-modal-info">Genre: {props.data.category}</h4>
             <h4 className="review-modal-info">Release Date: {props.data.releaseDate}</h4>
