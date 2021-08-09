@@ -101,11 +101,14 @@ form > p > input {
 }
 img {
    width: 250px;
-   height: auto;
+   height: 275px;
+   margin-bottom: 5px;
+
 }
 p {
   text-align: left;
   padding-left: 10px;
+  margin: 0px;
 }
 .editModal{
    position: fixed;
@@ -125,7 +128,14 @@ p {
    align-self: flex-start;
    margin-top: 29%;
 }
-#cardHoverPullDown {
-   display: none;
-   flex-wrap: wrap;
+.limit:hover {
+   transition-duration: 5s;
+}
+.greaterCard {
+   height: 35rem;
+}
+.limit {
+}
+.buttonWrap {
+   margin-top: 10px;
 }
