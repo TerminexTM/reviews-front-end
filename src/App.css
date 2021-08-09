@@ -38,12 +38,16 @@
 }
 form {
    display: table;
+   border-radius: 20px;
+   padding: 10px;
 }
 form > p {
    display: table-row;
 }
 form > p > label {
    display: table-cell;
+   text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white;
+   padding-left: 20px;
 }
 form > p > textarea {
    display: table-cell;
@@ -51,9 +55,77 @@ form > p > textarea {
 form > p > input {
    display: table-cell;
 }
+.editSub {
+   margin-left: 20px;
+}
+/* OUR CSS ============== */
+/* REVIEWS MODAL */
+.review-modal-box{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.review-modal-content{
+  width: 500px;
+  background-color: white;
+}
+.review-modal-footer{
+  padding: 10px;
+}
+.review-modal-body{
+  padding: 10px;
+  border-style: solid;
+}
+/*REVIEWS MODAL END */
+.flexContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
 .limit {
-   width: 25%;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #4b4550;
+  width: 300px;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  background-color: #4b4550;
+  box-shadow: 5px 5px 5px #9e96ab;
 }
 img {
-   width: 100%;
+   width: 250px;
+   height: auto;
+}
+p {
+  text-align: left;
+  padding-left: 10px;
+}
+.editModal{
+   position: fixed;
+   left: 0;
+   top: 0;
+   right: 0;
+   bottom:0;
+   background-color: rgb(0,0,0,.5);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.editModal > form {
+   background-color: rgb(0,0,0,.85);
+}
+.closeEditModal {
+   align-self: flex-start;
+   margin-top: 29%;
+}
+#cardHoverPullDown {
+   display: none;
+   flex-wrap: wrap;
 }
