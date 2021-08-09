@@ -212,11 +212,11 @@ const App = () => {
          />
       </form>}
       {/*REVIEW MODAL*/}
-      {/*<div>
+    <div>
         <button value={review._id} onClick={(event) => setViewReviewModal(event.target.value)}>Show Review</button>
         <Review data={review} onClose={() => setViewReviewModal(false)}
         viewReviewModal={viewReviewModal}/>
-      </div>*/}
+      </div>
       {/*HERE ENDS REVIEW MODAL*/}
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
