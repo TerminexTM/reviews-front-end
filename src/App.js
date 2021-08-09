@@ -140,10 +140,11 @@ const App = () => {
 //HTML/JSX SETUP
    return (
       <>
-      <h1> 🎮 Hello World 🕹 </h1>
+      <h1> 🎮 Two Dudes Reviews 🕹 </h1>
 {/*FORM DOCUMENT FOR NEW GAME REVIEWS*/}
-      <button onClick={toggleNewForm}> Add New Review! </button>
+      <button onClick={toggleNewForm}> New Review </button>
       {viewNewForm &&
+         <div className="modalStyle">
       <form onSubmit={handleNewReviewFormSubmit}>
          <p>
             <label>Title:</label>
@@ -161,10 +162,15 @@ const App = () => {
          </p>
          <p>
             <label>Platforms:</label>
-            <input
-               type="text"
+            <select
                onChange={handleNewPlatform}
-            />
+            >
+            <option>PC</option>
+            <option>Mac</option>
+            <option>Xbox</option>
+            <option>Playstation</option>
+            <option>Switch</option>
+            </select>
          </p>
          <p>
             <label>Release Date: </label>
@@ -210,7 +216,9 @@ const App = () => {
             type="submit"
             value="Submit Review"
          />
-      </form>}
+         <button onClick={toggleNewForm}> Close </button>
+      </form>
+         </div>}
       {/*REVIEW MODAL*/}
       {/*HERE ENDS REVIEW MODAL*/}
 
@@ -244,7 +252,7 @@ const App = () => {
                </div>
             {/*EDIT FORM*/}
                 {viewEditForm === review._id &&
-                   <div className="editModal">
+                   <div className="modalStyle">
                  <form onSubmit={ (event) => { handleEdit(event, review) } }>
                     <p>
                        <label>Title:</label>

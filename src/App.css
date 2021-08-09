@@ -110,7 +110,7 @@ p {
   padding-left: 10px;
   margin: 0px;
 }
-.editModal{
+.modalStyle{
    position: fixed;
    left: 0;
    top: 0;
@@ -121,7 +121,7 @@ p {
    align-items: center;
    justify-content: center;
 }
-.editModal > form {
+.modalStyle > form {
    background-color: rgb(0,0,0,.85);
 }
 .closeEditModal {
