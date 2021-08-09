@@ -170,10 +170,9 @@ p {
    font-size: 32px;
    width: 100%;
 }
-.star {
-   color: gold;
-}
+
+/* styling for the title of the cards */
 .titleCard {
    height: 5rem;
-   width: 90%;
+   width: 100%;
 }
