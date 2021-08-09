@@ -212,11 +212,6 @@ const App = () => {
          />
       </form>}
       {/*REVIEW MODAL*/}
-      {/*<div>
-        <button value={review._id} onClick={(event) => setViewReviewModal(event.target.value)}>Show Review</button>
-        <Review data={review} onClose={() => setViewReviewModal(false)}
-        viewReviewModal={viewReviewModal}/>
-      </div>*/}
       {/*HERE ENDS REVIEW MODAL*/}
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
@@ -226,7 +221,9 @@ const App = () => {
 
               <div id={review._id} className="greaterCard">
 
-               <div id={review._id} onClick={() => setViewReviewModal(true)} className="limit" onMouseOver={toggleOnHoverEvent}>
+               <div id={review._id} value={review._id} onClick={(event) => setViewReviewModal(event.target.id)} className="limit" onMouseOver={toggleOnHoverEvent}>
+               <Review data={review} onClose={() => setViewReviewModal(false)}
+               viewReviewModal={viewReviewModal}/>
                   <h1 id={review._id}>{review.title}</h1>
                   <img id={review._id} src={review.image} alt="Bad Source"></img>
                   <p id={review._id}>Review Score: {review.rating}</p>
