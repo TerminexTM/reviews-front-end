@@ -256,7 +256,9 @@ const App = () => {
                <div id={review._id} value={review._id} onClick={(event) => setViewReviewModal(event.target.id)} className="limit" onMouseOver={toggleOnHoverEvent}>
                <Review data={review} onClose={() => setViewReviewModal(false)}
                viewReviewModal={viewReviewModal}/>
-                  <h1 id={review._id}>{review.title}</h1>
+               <div className="titleCard">
+                  <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'20px'} : {'font-size' : '24px'}}>{review.title}</h1>
+               </div>
                   <img id={review._id} src={review.image} alt="Bad Source"></img>
                   <p id={review._id}>Review Score: {stars}</p>
                   <p id={review._id}>Released: {review.releaseDate}</p>

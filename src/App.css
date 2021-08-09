@@ -168,7 +168,12 @@ p {
 }
 .limit > h1 {
    font-size: 32px;
+   width: 100%;
 }
 .star {
    color: gold;
+}
+.titleCard {
+   height: 5rem;
+   width: 90%;
 }
