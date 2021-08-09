@@ -74,13 +74,40 @@ form > p > input {
 .review-modal-content{
   width: 500px;
   background-color: white;
+  color: black;
+  border-style: solid;
+  border-radius: 5px;
 }
 .review-modal-footer{
   padding: 10px;
 }
+
+.review-modal-title{
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+}
+.review-modal-title > h2{
+  margin: 0;
+  padding-top: 10px;
+}
+.review-modal-info{
+  margin: 0 auto;
+  text-align: left;
+  padding-left: 10px;
+}
+.review-modal-review{
+  padding-right: 10px;
+  text-align: justify;
+  height: 350px;
+  overflow-y: scroll;
+}
+.review-modal-image{
+  border-radius: 0px;
+  padding-top: 10px;
+}
 .review-modal-body{
   padding: 10px;
-  border-style: solid;
 }
 /*REVIEWS MODAL END */
 .flexContainer{
