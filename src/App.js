@@ -242,6 +242,7 @@ const App = () => {
       {/*HERE ENDS REVIEW MODAL*/}
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
+{/*JS FOR CREATING STARS FOR THE REVIEW*/}
       <div className="flexContainer">
          {gameReviews.map((review) => {
             const stars = [];
