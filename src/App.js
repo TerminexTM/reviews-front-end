@@ -36,7 +36,15 @@ const App = () => {
          .get('https://game-review-back-end.herokuapp.com/reviews')
          .then((response) => {
             setGameReviews(response.data)
+
          })
+         .then(
+           axios
+             .get('https://game-review-back-end.herokuapp.com/users')
+             .then((userResponse) => {
+               setUserDB(userResponse.data)
+             })
+         )
    }, [])
 
 //GET DATA WORKS LIKE A PAGE REFRENCE FUNCTION FOR .THEN STATEMENTS!
@@ -50,11 +58,7 @@ const App = () => {
 
 //REFRESHES PAGE WITH NEW USER DATA
    const getUserData = () => {
-     axios
-      .get('https://game-review-back-end.herokuapp.com/users')
-      .then((response) => {
-        setNewUserName(response.data)
-      })
+
    }
 
 //SUBMIT CREATE NEW FORM HANDLER
@@ -79,15 +83,20 @@ const App = () => {
 
 //SUBMIT NEW USER FORM HANDLER
   const handleNewUserFormSubmit = (event) => {
+    event.preventDefault();
     axios.post(
       'https://game-review-back-end.herokuapp.com/users',
       {
         username:newUserName,
         password:newPassword
       }
-    ).then(() => {
-      getUserData();
-  })
+    ).then(
+        axios
+         .get('https://game-review-back-end.herokuapp.com/users')
+         .then((response) => {
+           setUserDB(response.data)
+         })
+  )
 }
 
 //DELETE FUNCTION HANDLER
@@ -280,6 +289,7 @@ const App = () => {
     <input
       type="text"
       onChange={handleNewUserName}
+      value={newUserName}
       />
   </p>
 
