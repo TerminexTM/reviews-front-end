@@ -15,6 +15,9 @@ const App = () => {
    const [newReview, setNewReview] = useState(''); //form item
    const [newReviewPerson, setNewReviewPerson] = useState(''); //form item
    const [gameReviews, setGameReviews] = useState([]); //populated data for map
+   const [newUserName, setNewUserName] = useState ('');
+   const [newPassword, setNewPassword] = useState ('');
+   const [userDB, setUserDB] = useState ([]);
 
 //BUTTONS STATES
    const [viewNewForm, setViewNewForm] = useState(false);
@@ -24,6 +27,8 @@ const App = () => {
    const [viewEditForm, setViewEditForm] = useState('');
 
    const [viewHoverEvent, setViewHoverEvent] = useState('');
+
+   const [viewNewUser, setViewNewUser] = useState('');
 
 //USEEFFECT SETS INITIAL STATE ARRAY
    useEffect(() => {
@@ -41,6 +46,15 @@ const App = () => {
      .then((response) => {
         setGameReviews(response.data)
      })
+   }
+
+//REFRESHES PAGE WITH NEW USER DATA
+   const getUserData = () => {
+     axios
+      .get('https://game-review-back-end.herokuapp.com/users')
+      .then((response) => {
+        setNewUserName(response.data)
+      })
    }
 
 //SUBMIT CREATE NEW FORM HANDLER
@@ -62,6 +76,20 @@ const App = () => {
          getData();
       })
    }
+
+//SUBMIT NEW USER FORM HANDLER
+  const handleNewUserFormSubmit = (event) => {
+    axios.post(
+      'https://game-review-back-end.herokuapp.com/users',
+      {
+        username:newUserName,
+        password:newPassword
+      }
+    ).then(() => {
+      getUserData();
+  })
+}
+
 //DELETE FUNCTION HANDLER
    const handleDelete = (reviewInfo) => {
       setViewReviewModal('');
