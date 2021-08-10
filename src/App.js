@@ -15,6 +15,9 @@ const App = () => {
    const [newReview, setNewReview] = useState(''); //form item
    const [newReviewPerson, setNewReviewPerson] = useState(''); //form item
    const [gameReviews, setGameReviews] = useState([]); //populated data for map
+   const [newUserName, setNewUserName] = useState ('');
+   const [newPassword, setNewPassword] = useState ('');
+   const [userDB, setUserDB] = useState ([]);
 
 //BUTTONS STATES
    const [viewNewForm, setViewNewForm] = useState(false);
@@ -25,13 +28,23 @@ const App = () => {
 
    const [viewHoverEvent, setViewHoverEvent] = useState('');
 
+   const [viewNewUser, setViewNewUser] = useState('');
+
 //USEEFFECT SETS INITIAL STATE ARRAY
    useEffect(() => {
       axios
          .get('https://game-review-back-end.herokuapp.com/reviews')
          .then((response) => {
             setGameReviews(response.data)
+
          })
+         .then(
+           axios
+             .get('https://game-review-back-end.herokuapp.com/users')
+             .then((userResponse) => {
+               setUserDB(userResponse.data)
+             })
+         )
    }, [])
 
 //GET DATA WORKS LIKE A PAGE REFRENCE FUNCTION FOR .THEN STATEMENTS!
@@ -41,6 +54,11 @@ const App = () => {
      .then((response) => {
         setGameReviews(response.data)
      })
+   }
+
+//REFRESHES PAGE WITH NEW USER DATA
+   const getUserData = () => {
+
    }
 
 //SUBMIT CREATE NEW FORM HANDLER
@@ -62,6 +80,25 @@ const App = () => {
          getData();
       })
    }
+
+//SUBMIT NEW USER FORM HANDLER
+  const handleNewUserFormSubmit = (event) => {
+    event.preventDefault();
+    axios.post(
+      'https://game-review-back-end.herokuapp.com/users',
+      {
+        username:newUserName,
+        password:newPassword
+      }
+    ).then(
+        axios
+         .get('https://game-review-back-end.herokuapp.com/users')
+         .then((response) => {
+           setUserDB(response.data)
+         })
+  )
+}
+
 //DELETE FUNCTION HANDLER
    const handleDelete = (reviewInfo) => {
       setViewReviewModal('');
@@ -117,6 +154,12 @@ const App = () => {
    }
    const handleNewReviewPerson = (event) => {
       setNewReviewPerson(event.target.value)
+   }
+   const handleNewUserName = (event) => {
+      setNewUserName(event.target.value)
+   }
+   const handleNewPassword = (event) => {
+      setNewPassword(event.target.value)
    }
 //BUTTON FUNCTIONS ===========================\\
 
@@ -238,8 +281,33 @@ const App = () => {
          <button onClick={toggleNewForm}> Close </button>
       </form>
          </div>}
-      {/*REVIEW MODAL*/}
-      {/*HERE ENDS REVIEW MODAL*/}
+
+{/*FROM DOCUMENT FOR NEW USER*/}
+<form onSubmit={handleNewUserFormSubmit}>
+  <p>
+    <lable>Username:</lable>
+    <input
+      type="text"
+      onChange={handleNewUserName}
+      value={newUserName}
+      />
+  </p>
+
+  <p>
+    <lable>Password:</lable>
+    <input
+      type="text"
+      onChange={handleNewPassword}
+    />
+  </p>
+  <p>
+    <input
+      type="submit"
+      value="Submit Username"
+    />
+  </p>
+</form>
+
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
 {/*JS FOR CREATING STARS FOR THE REVIEW*/}
