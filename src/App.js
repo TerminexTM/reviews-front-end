@@ -146,6 +146,12 @@ const App = () => {
    const handleNewReviewPerson = (event) => {
       setNewReviewPerson(event.target.value)
    }
+   const handleNewUserName = (event) => {
+      setNewUserName(event.target.value)
+   }
+   const handleNewPassword = (event) => {
+      setNewPassword(event.target.value)
+   }
 //BUTTON FUNCTIONS ===========================\\
 
 //VIEW NEW FORM TOGGLE
@@ -266,8 +272,32 @@ const App = () => {
          <button onClick={toggleNewForm}> Close </button>
       </form>
          </div>}
-      {/*REVIEW MODAL*/}
-      {/*HERE ENDS REVIEW MODAL*/}
+
+{/*FROM DOCUMENT FOR NEW USER*/}
+<form onSubmit={handleNewUserFormSubmit}>
+  <p>
+    <lable>Username:</lable>
+    <input
+      type="text"
+      onChange={handleNewUserName}
+      />
+  </p>
+
+  <p>
+    <lable>Password:</lable>
+    <input
+      type="text"
+      onChange={handleNewPassword}
+    />
+  </p>
+  <p>
+    <input
+      type="submit"
+      value="Submit Username"
+    />
+  </p>
+</form>
+
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
 {/*JS FOR CREATING STARS FOR THE REVIEW*/}
