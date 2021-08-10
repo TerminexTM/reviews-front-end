@@ -173,6 +173,7 @@ p {
 
 /* styling for the title of the cards */
 .titleCard {
-   height: 5rem;
+   height: 100px;
    width: 100%;
+   margin: 0 auto;
 }

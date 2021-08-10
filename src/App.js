@@ -257,7 +257,7 @@ const App = () => {
                <Review data={review} onClose={() => setViewReviewModal(false)}
                viewReviewModal={viewReviewModal}/>
                <div className="titleCard">
-                  <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'20px'} : {'font-size' : '32px'}}>{review.title}</h1>
+                  <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'20px'} : {'font-size' : '24px'}}>{review.title}</h1>
                </div>
                   <img id={review._id} src={review.image} alt="Bad Source"></img>
                   <p id={review._id}>Review Score: {stars}</p>
