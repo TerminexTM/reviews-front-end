@@ -30,7 +30,7 @@
 
 
 body {
-   background-color: rgb(120, 130, 136)
+   background-color: white;
 }
 form {
    display: table;
@@ -111,15 +111,10 @@ form > p > input {
   flex-wrap: wrap;
 }
 .limit {
-  border-style: solid;
   border-radius: 5px;
-  border-color: #4b4550;
   width: 400px;
   margin: 20px;
-
   margin-top: 5px;
-  padding: 10px;
-
   text-align: center;
   color: white;
   background-color: #4b4550;
@@ -135,7 +130,7 @@ img {
 p {
   text-align: left;
   padding-left: 10px;
-  margin: 0px;
+  margin: 2px;
 }
 .modalStyle{
    position: fixed;
@@ -165,6 +160,9 @@ p {
    font-size: 32px;
    width: 100%;
 }
+.dropDown{
+  padding-bottom: 3px;
+}
 
 /* styling for the title of the cards */
 .titleCard {
@@ -193,4 +191,20 @@ div > button:hover {
 }
 button > i {
    font-size: 25px;
+}
+
+/* NAVBAR */
+.navbar{
+  display: flex;
+  background-color: #4b4550;
+  color: white;
+}
+.navbar > h1{
+  margin: 0;
+}
+.appFormDiv{
+  display: flex;
+}
+.accountBtn{
+  color: white;
 }

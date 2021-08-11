@@ -239,6 +239,8 @@ const App = () => {
 //HTML/JSX SETUP
    return (
       <>
+{/* ============START OF NAV=============================== */}
+    <div className="navbar">
       <h1> 🎮 Two Dudes Reviews 🕹 </h1>
       {toggleLogout ?
           <button onClick={handleLogout} class='logoutBtn'>Logout</button> :
@@ -246,7 +248,6 @@ const App = () => {
             {toggleLogin ?
               //login form
               <div className="formContainer">
-                <h1 class='formTitle'>Login</h1>
                 <form onSubmit={handleLogin} class='inputForm'>
                   <input type='text' placeholder='username' class='textInput' onChange={handleNewUserName}/>
                   <input type='password' placeholder='password' class='textInput' onChange={handleNewPassword}/>
@@ -261,7 +262,6 @@ const App = () => {
             :
             // new user form
             <div className="App" class='formContainer'>
-              <h1 class='formTitle'>Create an Account</h1>
               <form onSubmit={handleNewUserFormSubmit} class='inputForm'>
                 <input type='text' placeholder='username' class='textInput' onChange={handleNewUserName}/>
                 <input type='password' placeholder='password' class='textInput' onChange={handleNewPassword}/>
@@ -278,8 +278,10 @@ const App = () => {
           </div>
         }
        {currentUser.username &&
-      <button onClick={toggleNewForm}> New Review </button>
-   }
+         <button onClick={toggleNewForm}> New Review </button>
+       }
+    </div>
+{/* ============END OF NAV=============================== */}
       {viewNewForm &&
          <div className="modalStyle">
       <form onSubmit={handleNewReviewFormSubmit}>
@@ -302,11 +304,29 @@ const App = () => {
             <select
                onChange={handleNewPlatform}
             >
-            <option>PC</option>
             <option>Mac</option>
-            <option>Xbox</option>
+            <option>PC</option>
+            <option>Nintendo</option>
+            <option>Super Nintendo</option>
+            <option>Nintendo 64</option>
+            <option>Game Cube</option>
+            <option>Wii</option>
+            <option>Wii U</option>
+            <option>Nintendo Switch</option>
+            <option>GameBoy</option>
+            <option>GameBoy Advance</option>
+            <option>DS/3DS</option>
             <option>Playstation</option>
-            <option>Switch</option>
+            <option>Playstation 2</option>
+            <option>Playstation 3</option>
+            <option>Playstation 4</option>
+            <option>Playstation 5</option>
+            <option>PSP</option>
+            <option>Playstation Portable</option>
+            <option>Xbox</option>
+            <option>Xbox 360</option>
+            <option>Xbox One</option>
+            <option>Xbox Series X</option>
             </select>
          </p>
          <p>
