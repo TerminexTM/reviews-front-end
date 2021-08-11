@@ -97,6 +97,7 @@ form > p > input {
   text-align: justify;
   height: 350px;
   overflow-y: scroll;
+  border: 1px solid black;
 }
 .review-modal-image{
   border-radius: 0px;
@@ -190,7 +191,4 @@ div > button {
 }
 div > button:hover {
    color: red;
-}
-button > i {
-   font-size: 25px;
 }
