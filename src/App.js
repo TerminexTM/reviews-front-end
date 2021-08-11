@@ -409,7 +409,7 @@ const App = () => {
             return(
 
               <div id={review._id} className="greaterCard">
-              {currentUser.username &&
+              {currentUser.username === review.reviewPerson &&
               <div className="buttonWrap">
                  <button className="fas fa-trash-alt trash" onClick={() => handleDelete(review)}></button>
                  {/*EDIT BUTTON*/}
@@ -424,10 +424,10 @@ const App = () => {
                   <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'16px'} : {'font-size' : '28px'}}>{review.title}</h1>
                </div>
 
-                  <p id={review._id}>Review Score: {stars}</p>
-                  <p id={review._id}>Reviewed by: {review.reviewPerson}</p>
+                  <p id={review._id}>Score: {stars}</p>
+                  <p id={review._id}>Reviewer: {review.reviewPerson}</p>
                   <div id={review._id} className="dropDown" style= { viewHoverEvent === review._id ? {'visibility' : 'visible', "transition-duration": '.25s' } : {'visibility' : 'hidden', "font-size":"0px"}}>
-                    <p id={review._id}>Platform: {review.platform}</p>
+                    <p id={review._id}>Reviewed On: {review.platform}</p>
                      <p id={review._id}>Released: {review.releaseDate}</p>
                      <p id={review._id}>Genre: {review.category}</p>
                      {/*<p id={review._id}>Review: {review.review}</p>*/}
