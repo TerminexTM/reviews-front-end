@@ -67,7 +67,7 @@ const App = () => {
             category:newCategory || 'Horror',
             rating:newRating || 1,
             review:newReview || `Thats one good looking banana`,
-            reviewPerson:newReviewPerson || `You, the viewer.`,
+            reviewPerson: currentUser.username
          }
       ).then(() => {
          getData();
@@ -312,7 +312,7 @@ const App = () => {
          <p>
             <label>Release Date: </label>
             <input
-               type="text"
+               type="date"
                onChange={handleNewReleaseDate}
             />
          </p>
@@ -359,11 +359,7 @@ const App = () => {
             <br />
          </p>
          <p>
-            <label>Reviewer:</label>
-            <input
-               type="text"
-               onChange={handleNewReviewPerson}
-            />
+            <label>Reviewed by: {currentUser.username}</label>
          </p>
          <input
             type="submit"
@@ -389,9 +385,9 @@ const App = () => {
               <div id={review._id} className="greaterCard">
               {currentUser.username &&
               <div className="buttonWrap">
-                 <button onClick={() => handleDelete(review)}><i class="fas fa-trash-alt"></i></button>
+                 <button className="fas fa-trash-alt" onClick={() => handleDelete(review)}></button>
                  {/*EDIT BUTTON*/}
-                 <button value={review._id} onClick={toggleEditForm}> <i class="fas fa-pencil-alt"></i> </button>
+                 <button className="fas fa-pencil-alt" value={review._id} onClick={toggleEditForm}></button>
               </div>
               }
                <div id={review._id} value={review._id} onClick={(event) => setViewReviewModal(event.target.id)} className="limit" onMouseOver={toggleOnHoverEvent}>
@@ -434,35 +430,56 @@ const App = () => {
                     </p>
                     <p>
                        <label>Platforms:</label>
-                       <input
-                          type="text"
+                       <select
                           onChange={handleNewPlatform}
                           defaultValue={review.platform}
-                       />
+                       >
+                       <option>PC</option>
+                       <option>Mac</option>
+                       <option>Xbox</option>
+                       <option>Playstation</option>
+                       <option>Switch</option>
+                       </select>
                     </p>
                     <p>
                        <label>Release Date: </label>
                        <input
-                          type="text"
+                          type="date"
                           onChange={handleNewReleaseDate}
                           defaultValue={review.releaseDate}
                        />
                     </p>
                     <p>
                        <label>Genre:</label>
-                       <input
+                       <select
                           type="text"
                           onChange={handleNewCategory}
                           defaultValue={review.category}
-                       />
+                       >
+                          <option>Horror</option>
+                          <option>RPG</option>
+                          <option>Shooter</option>
+                          <option>Sports</option>
+                          <option>Platformer</option>
+                          <option>Adventure</option>
+                          <option>Action</option>
+                          <option>MOBA</option>
+                          <option>Roguelike</option>
+                       </select>
                     </p>
                     <p>
                        <label>Rating:</label>
-                       <input
+                       <select
                           type="text"
                           onChange={handleNewRating}
                           defaultValue={review.rating}
-                       />
+                       >
+                       <option value='1'>&#11088;</option>
+                       <option value='2'>&#11088;&#11088;</option>
+                       <option value='3'>&#11088;&#11088;&#11088;</option>
+                       <option value='4'>&#11088;&#11088;&#11088;&#11088;</option>
+                       <option value='5'>&#11088;&#11088;&#11088;&#11088;&#11088;</option>
+                       </select>
                     </p>
                     <p>
                        <label>Review:</label>
