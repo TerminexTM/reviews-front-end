@@ -28,13 +28,9 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+body {
+   background-color: white;
 }
 form {
    display: table;
@@ -74,13 +70,41 @@ form > p > input {
 .review-modal-content{
   width: 500px;
   background-color: white;
+  color: black;
+  border-style: solid;
+  border-radius: 5px;
 }
 .review-modal-footer{
   padding: 10px;
 }
+
+.review-modal-title{
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+}
+.review-modal-title > h2{
+  margin: 0;
+  padding-top: 10px;
+}
+.review-modal-info{
+  margin: 0 auto;
+  text-align: left;
+  padding-left: 10px;
+}
+.review-modal-review{
+  padding-right: 10px;
+  text-align: justify;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid black;
+}
+.review-modal-image{
+  border-radius: 0px;
+  padding-top: 10px;
+}
 .review-modal-body{
   padding: 10px;
-  border-style: solid;
 }
 /*REVIEWS MODAL END */
 .flexContainer{
@@ -88,26 +112,28 @@ form > p > input {
   flex-wrap: wrap;
 }
 .limit {
-  border-style: solid;
-  border-radius: 10px;
-  border-color: #4b4550;
-  width: 300px;
+  border-radius: 5px;
+  width: 400px;
   margin: 20px;
-  padding: 10px;
+  margin-top: 5px;
   text-align: center;
   color: white;
   background-color: #4b4550;
   box-shadow: 5px 5px 5px #9e96ab;
 }
 img {
-   width: 250px;
-   height: auto;
+   width: 400px;
+   height: 300px;
+   margin-bottom: 5px;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
 }
 p {
   text-align: left;
   padding-left: 10px;
+  margin: 2px;
 }
-.editModal{
+.modalStyle{
    position: fixed;
    left: 0;
    top: 0;
@@ -118,14 +144,70 @@ p {
    align-items: center;
    justify-content: center;
 }
-.editModal > form {
+.modalStyle > form {
    background-color: rgb(0,0,0,.85);
 }
 .closeEditModal {
    align-self: flex-start;
    margin-top: 29%;
 }
-#cardHoverPullDown {
-   display: none;
-   flex-wrap: wrap;
+.greaterCard {
+   height: 32rem;
 }
+.buttonWrap {
+   margin-top: 10px;
+}
+.limit > h1 {
+   font-size: 32px;
+   width: 100%;
+}
+.dropDown{
+  padding-bottom: 3px;
+}
+
+/* styling for the title of the cards */
+.titleCard {
+   height: 3rem;
+   text-align: center;
+   margin: auto 2px;
+}
+
+.titleCard > h1{
+  margin: 0 auto;
+  text-align: center;
+   height: 50px;
+   width: 100%;
+   margin: 0 auto;
+}
+div > button {
+   background-color: inherit;
+   border: none;
+   color: black;
+   margin-right: 25px;
+   margin-left: 25px;
+   margin-bottom: 0px;
+}
+div > button:hover {
+   color: red;
+}
+
+button > i {
+   font-size: 25px;
+}
+
+/* NAVBAR */
+.navbar{
+  display: flex;
+  background-color: #4b4550;
+  color: white;
+}
+.navbar > h1{
+  margin: 0;
+}
+.appFormDiv{
+  display: flex;
+}
+.accountBtn{
+  color: white;
+}
+
