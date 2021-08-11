@@ -192,6 +192,7 @@ p {
    width: 100%;
    margin: 0 auto;
    font-family: 'Press Start 2P', cursive;
+   text-shadow: 3px 3px 0 black;
 }
 div > button {
    background-color: inherit;
@@ -222,9 +223,9 @@ button > i {
   margin-top: 10px;
   font-family: 'Press Start 2P', cursive;
   font-size: 22px;
-  text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black;
-  margin-left: 10px;
-  margin-right: 50px;
+  text-shadow: 3px 3px 0 black;
+  margin-left: 15px;
+  margin-right: 100px;
 }
 .navbar > p {
    align-self: center;
@@ -234,13 +235,20 @@ button > i {
 .logoController {
    margin: 0;
    font-size: 32px;
-   margin-left: 5px;
+   margin-left: 15px;
 }
 .appFormDiv{
   display: flex;
 }
 .accountBtn{
   color: white;
+  font-size: 14px;
+  text-decoration: underline;
+}
+.accountBtn:hover{
+  text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black;
+  color: white;
+  cursor: pointer;
 }
 i {
    text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black;
@@ -252,7 +260,7 @@ i {
 .trash:hover {
    cursor: pointer;
 }
-.logoutBtn, .newButton {
+.logoutBtn, .newButton{
    color: white;
    border: 1px solid white;
    border-radius: 4px;
@@ -263,4 +271,21 @@ i {
    background-color: white;
    border: 1px solid black;
    cursor: pointer;
+}
+.submitBtn{
+  background-color: inherit;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.textInput{
+  width: 100px;
+  background-color: #827e86;
+  color: white;
+}
+.textInput:focus{
+  outline: none;
+}
+.textInput::placeholder{
+  color: white;
 }
