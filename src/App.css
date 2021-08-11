@@ -254,10 +254,17 @@ i {
    text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black;
 }
 .pencil:hover {
-   color: rgb(184, 106, 34);
-   cursor: pointer;
+   color: black;
 }
 .trash:hover {
+   color: black;
+}
+.trash-color {
+   color: red;
+   cursor: pointer;
+}
+.pencil-color {
+   color: rgb(184, 106, 34);
    cursor: pointer;
 }
 .logoutBtn, .newButton{

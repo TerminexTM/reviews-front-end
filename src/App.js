@@ -409,11 +409,16 @@ const App = () => {
             return(
 
               <div id={review._id} className="greaterCard">
-              {currentUser.username === review.reviewPerson &&
+              {currentUser.username === review.reviewPerson ?
               <div className="buttonWrap">
-                 <button className="fas fa-trash-alt trash" onClick={() => handleDelete(review)}></button>
+                 <button className="fas fa-trash-alt trash trash-color" onClick={() => handleDelete(review)}></button>
                  {/*EDIT BUTTON*/}
-                 <button className="fas fa-pencil-alt pencil" value={review._id} onClick={toggleEditForm}></button>
+                 <button className="fas fa-pencil-alt pencil pencil-color" value={review._id} onClick={toggleEditForm}></button>
+              </div> :
+              <div className="buttonWrap">
+                 <button className="fas fa-trash-alt trash"></button>
+                 {/*EDIT BUTTON*/}
+                 <button className="fas fa-pencil-alt pencil" value={review._id}></button>
               </div>
               }
                <div id={review._id} value={review._id} onClick={(event) => setViewReviewModal(event.target.id)} className="limit" onMouseOver={toggleOnHoverEvent}>
@@ -521,12 +526,7 @@ const App = () => {
                        <br />
                     </p>
                     <p>
-                       <label>Reviewer:</label>
-                       <input
-                          type="text"
-                          onChange={handleNewReviewPerson}
-                          defaultValue={review.reviewPerson}
-                       />
+                       <label>Reviewer: {currentUser.username}</label>
                     </p>
                     <input
                        className = "editSub"
