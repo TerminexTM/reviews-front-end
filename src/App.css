@@ -112,22 +112,25 @@ form > p > input {
 }
 .limit {
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 5px;
   border-color: #4b4550;
-  width: 300px;
+  width: 400px;
   margin: 20px;
+
   margin-top: 5px;
   padding: 10px;
+
   text-align: center;
   color: white;
   background-color: #4b4550;
   box-shadow: 5px 5px 5px #9e96ab;
 }
 img {
-   width: 300px;
-   height: 275px;
-   margin-bottom: 0px;
-
+   width: 400px;
+   height: 300px;
+   margin-bottom: 5px;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
 }
 p {
   text-align: left;
@@ -153,7 +156,7 @@ p {
    margin-top: 29%;
 }
 .greaterCard {
-   height: 35rem;
+   height: 32rem;
 }
 .buttonWrap {
    margin-top: 10px;
@@ -165,6 +168,14 @@ p {
 
 /* styling for the title of the cards */
 .titleCard {
+   height: 3rem;
+   text-align: center;
+   margin: auto 2px;
+}
+
+.titleCard > h1{
+  margin: 0 auto;
+  text-align: center;
    height: 50px;
    width: 100%;
    margin: 0 auto;
