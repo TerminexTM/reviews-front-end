@@ -45,6 +45,15 @@ const App = () => {
    }, [])
 
 //GET DATA WORKS LIKE A PAGE REFRENCE FUNCTION FOR .THEN STATEMENTS!
+   const resetEdits = () => {
+      setNewTitle('');
+      setNewImage('');
+      setNewReleaseDate('');
+      setNewPlatform('');
+      setNewCategory('');
+      setNewRating('');
+      setNewReview('');
+   }
    const getData = () => {
      axios
      .get('https://game-review-back-end.herokuapp.com/reviews')
@@ -167,6 +176,7 @@ const App = () => {
 
       setViewEditForm('');
       setViewReviewModal('');
+      resetEdits();
       axios
          .put(
             `https://game-review-back-end.herokuapp.com/reviews/${reviewInfo._id}`,
