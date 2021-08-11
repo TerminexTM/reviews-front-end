@@ -17,8 +17,12 @@ const App = () => {
    const [gameReviews, setGameReviews] = useState([]); //populated data for map
    const [newUserName, setNewUserName] = useState ('');
    const [newPassword, setNewPassword] = useState ('');
-   const [userDB, setUserDB] = useState ([]);
-
+   //States for login and user Info
+   const [toggleLogin, setToggleLogin] = useState(true)
+   const [toggleError, setToggleError] = useState(false)
+   const [errorMessage, setErrorMessage] = useState('')
+   const [toggleLogout, setToggleLogout] = useState(false)
+   const [currentUser, setCurrentUser] = useState({})
 //BUTTONS STATES
    const [viewNewForm, setViewNewForm] = useState(false);
 
@@ -38,13 +42,6 @@ const App = () => {
             setGameReviews(response.data)
 
          })
-         .then(
-           axios
-             .get('https://game-review-back-end.herokuapp.com/users')
-             .then((userResponse) => {
-               setUserDB(userResponse.data)
-             })
-         )
    }, [])
 
 //GET DATA WORKS LIKE A PAGE REFRENCE FUNCTION FOR .THEN STATEMENTS!
@@ -56,13 +53,9 @@ const App = () => {
      })
    }
 
-//REFRESHES PAGE WITH NEW USER DATA
-   const getUserData = () => {
-
-   }
-
 //SUBMIT CREATE NEW FORM HANDLER
    const handleNewReviewFormSubmit = (event) => {
+      setViewNewForm(!viewNewForm)
       event.preventDefault();
       axios.post(
          'https://game-review-back-end.herokuapp.com/reviews',
@@ -81,24 +74,83 @@ const App = () => {
       })
    }
 
-//SUBMIT NEW USER FORM HANDLER
+//NEW USER & LOGIN/LOGOUT FUNCTIONALITY
+
+//new user submit form
   const handleNewUserFormSubmit = (event) => {
     event.preventDefault();
+    event.currentTarget.reset();
+    setNewUserName('');
+    setNewPassword('');
     axios.post(
       'https://game-review-back-end.herokuapp.com/users',
       {
         username:newUserName,
         password:newPassword
       }
-    ).then(
-        axios
-         .get('https://game-review-back-end.herokuapp.com/users')
-         .then((response) => {
-           setUserDB(response.data)
-         })
-  )
-}
-
+      ).then((response) => {
+         if(response.data.username){
+            console.log(response);
+            setToggleError(false);
+            setErrorMessage('');
+            setCurrentUser(response.data);
+            handleToggleLogout();
+         } else {
+            setErrorMessage(response.data);
+            setToggleError(true);
+         }
+      }
+      )
+   }
+//HANDLE THE LOGIN
+   const handleLogin = (event) => {
+     event.preventDefault();
+     event.currentTarget.reset();
+     setNewUserName('');
+     setNewPassword('');
+   axios.put('https://game-review-back-end.herokuapp.com/users',
+   {
+      username: newUserName,
+      password: newPassword
+   }
+   ).then((response) => {
+     if(response.data.username){
+      console.log(response);
+      setToggleError(false)
+      setErrorMessage('')
+      setCurrentUser(response.data)
+      handleToggleLogout()
+     } else {
+      console.log(response);
+      setToggleError(true)
+      setErrorMessage(response.data)
+     }
+   })
+ }
+//login logout toggles
+//set CurrentUser as empty
+   const handleLogout = () => {
+      setCurrentUser({})
+      handleToggleLogout();
+   }
+//show hide logout
+   const handleToggleLogout = () => {
+      if(toggleLogout) {
+         setToggleLogout(false)
+      } else {
+         setToggleLogout(true)
+      }
+   }
+//show hide form
+   const handleToggleForm = () => {
+      setToggleError(false);
+      if(toggleLogin === true) {
+         setToggleLogin(false);
+      } else {
+         setToggleLogin(true);
+      }
+   }
+   //===============================================\\
 //DELETE FUNCTION HANDLER
    const handleDelete = (reviewInfo) => {
       setViewReviewModal('');
@@ -113,6 +165,7 @@ const App = () => {
       event.preventDefault();
 
       setViewEditForm('');
+      setViewReviewModal('');
       axios
          .put(
             `https://game-review-back-end.herokuapp.com/reviews/${reviewInfo._id}`,
@@ -187,8 +240,46 @@ const App = () => {
    return (
       <>
       <h1> 🎮 Two Dudes Reviews 🕹 </h1>
-{/*FORM DOCUMENT FOR NEW GAME REVIEWS*/}
+      {toggleLogout ?
+          <button onClick={handleLogout} class='logoutBtn'>Logout</button> :
+          <div class='appFormDiv'>
+            {toggleLogin ?
+              //login form
+              <div className="formContainer">
+                <h1 class='formTitle'>Login</h1>
+                <form onSubmit={handleLogin} class='inputForm'>
+                  <input type='text' placeholder='username' class='textInput' onChange={handleNewUserName}/>
+                  <input type='password' placeholder='password' class='textInput' onChange={handleNewPassword}/>
+                  {toggleError ?
+                    <h5 class='errorMsg'>{errorMessage}</h5>
+                    :
+                    null
+                  }
+                  <input type='submit' value='Login' class='submitBtn'/>
+                </form>
+              </div>
+            :
+            // new user form
+            <div className="App" class='formContainer'>
+              <h1 class='formTitle'>Create an Account</h1>
+              <form onSubmit={handleNewUserFormSubmit} class='inputForm'>
+                <input type='text' placeholder='username' class='textInput' onChange={handleNewUserName}/>
+                <input type='password' placeholder='password' class='textInput' onChange={handleNewPassword}/>
+                {toggleError ?
+                  <h5 class='errorMsg'>{errorMessage}</h5>
+                  :
+                  null
+                }
+                <input type='submit' value='Register' class='submitBtn'/>
+              </form>
+            </div>
+            }
+            <button onClick={handleToggleForm} class='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
+          </div>
+        }
+       {currentUser.username &&
       <button onClick={toggleNewForm}> New Review </button>
+   }
       {viewNewForm &&
          <div className="modalStyle">
       <form onSubmit={handleNewReviewFormSubmit}>
@@ -280,33 +371,9 @@ const App = () => {
          />
          <button onClick={toggleNewForm}> Close </button>
       </form>
-         </div>}
+         </div>
+      }
 
-{/*FROM DOCUMENT FOR NEW USER*/}
-<form onSubmit={handleNewUserFormSubmit}>
-  <p>
-    <lable>Username:</lable>
-    <input
-      type="text"
-      onChange={handleNewUserName}
-      value={newUserName}
-      />
-  </p>
-
-  <p>
-    <lable>Password:</lable>
-    <input
-      type="text"
-      onChange={handleNewPassword}
-    />
-  </p>
-  <p>
-    <input
-      type="submit"
-      value="Submit Username"
-    />
-  </p>
-</form>
 
 
 {/*MAP DATA FOR CREATING THE INDEX OF REVIEWS*/}
@@ -320,27 +387,29 @@ const App = () => {
             return(
 
               <div id={review._id} className="greaterCard">
-
+              {currentUser.username &&
+              <div className="buttonWrap">
+                 <button onClick={() => handleDelete(review)}><i class="fas fa-trash-alt"></i></button>
+                 {/*EDIT BUTTON*/}
+                 <button value={review._id} onClick={toggleEditForm}> <i class="fas fa-pencil-alt"></i> </button>
+              </div>
+              }
                <div id={review._id} value={review._id} onClick={(event) => setViewReviewModal(event.target.id)} className="limit" onMouseOver={toggleOnHoverEvent}>
                <Review data={review} onClose={() => setViewReviewModal(false)}
                viewReviewModal={viewReviewModal}/>
                <div className="titleCard">
-                  <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'20px'} : {'font-size' : '32px'}}>{review.title}</h1>
+                  <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'20px'} : {'font-size' : '24px'}}>{review.title}</h1>
                </div>
                   <img id={review._id} src={review.image} alt="Bad Source"></img>
+                  {/*DELETE BUTTON*/}
+
                   <p id={review._id}>Review Score: {stars}</p>
                   <p id={review._id}>Released: {review.releaseDate}</p>
-                  <div id={review._id} className="dropDown" style= { viewHoverEvent === review._id ? {'visibility' : 'visible', "transition-duration": '.25s' } : {'visibility' : 'hidden', "font-size":"0px"}}>
+                  <div id={review._id} className="dropDown" style= { viewHoverEvent === review._id ? {'visibility' : 'visible', "transitionDuration": '.25s' } : {'visibility' : 'hidden', "font-size":"0px"}}>
                      <p id={review._id}>Platform: {review.platform}</p>
                      <p id={review._id}>Genre: {review.category}</p>
                      {/*<p id={review._id}>Review: {review.review}</p>*/}
                      <p id={review._id}>Reviewed by: {review.reviewPerson}</p>
-                     {/*DELETE BUTTON*/}
-                     <div className="buttonWrap">
-                        <button id={review._id} onClick={() => handleDelete(review)}>Delete Review</button>
-                        {/*EDIT BUTTON*/}
-                        <button id={review._id} value={review._id} onClick={toggleEditForm}> Edit Review </button>
-                     </div>
                   </div>
                </div>
             {/*EDIT FORM*/}
