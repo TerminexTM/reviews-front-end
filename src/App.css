@@ -30,7 +30,7 @@
 
 
 body {
-   background-color: white;
+   background-color: #c3d3d6;
 }
 form {
    display: table;
@@ -68,11 +68,13 @@ form > p > input {
   justify-content: center;
 }
 .review-modal-content{
-  width: 500px;
-  background-color: white;
+  width: 700px;
+  height: 700px;
+  background-color: #d4d1c0f2;
   color: black;
   border-style: solid;
-  border-radius: 5px;
+  border-radius: 10px;
+  box-shadow: 14px 12px 0 rgb(0,0,0,.5);
 }
 .review-modal-footer{
   padding: 10px;
@@ -82,10 +84,13 @@ form > p > input {
   margin: 0 auto;
   background-color: black;
   color: white;
+
 }
 .review-modal-title > h2{
   margin: 0;
-  padding-top: 10px;
+  padding-top: 12px;
+  font-size: 16px;
+  font-family: 'Press Start 2P', cursive;
 }
 .review-modal-info{
   margin: 0 auto;
@@ -95,13 +100,18 @@ form > p > input {
 .review-modal-review{
   padding-right: 10px;
   text-align: justify;
-  height: 350px;
+  height: 250px;
   overflow-y: scroll;
   border: 1px solid black;
+  background-color: #e4e3d6;
+  color: rgb(74 72 66)
 }
 .review-modal-image{
   border-radius: 0px;
-  padding-top: 10px;
+  margin-top: 10px;
+  border: 1px solid black;
+  height: 170px;
+  width: 60%;
 }
 .review-modal-body{
   padding: 10px;
@@ -119,7 +129,10 @@ form > p > input {
   text-align: center;
   color: white;
   background-color: #4b4550;
-  box-shadow: 5px 5px 5px #9e96ab;
+  box-shadow: 5px 5px 5px rgb(0,0,0,.5);
+}
+.limit:hover {
+   cursor: pointer;
 }
 img {
    width: 400px;
@@ -178,6 +191,7 @@ p {
    height: 50px;
    width: 100%;
    margin: 0 auto;
+   font-family: 'Press Start 2P', cursive;
 }
 div > button {
    background-color: inherit;
@@ -200,9 +214,27 @@ button > i {
   display: flex;
   background-color: #4b4550;
   color: white;
+  align-content: center;
+  margin-bottom: 20px;
 }
 .navbar > h1{
   margin: 0;
+  margin-top: 10px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 22px;
+  text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black;
+  margin-left: 10px;
+  margin-right: 50px;
+}
+.navbar > p {
+   align-self: center;
+   margin-left: auto;
+   margin-right: 15px;
+}
+.logoController {
+   margin: 0;
+   font-size: 32px;
+   margin-left: 5px;
 }
 .appFormDiv{
   display: flex;
@@ -210,4 +242,25 @@ button > i {
 .accountBtn{
   color: white;
 }
-
+i {
+   text-shadow: 1px 0 0 black, -1px 0 0 black, 0 1px 0 black, 0 -1px 0 black;
+}
+.pencil:hover {
+   color: rgb(184, 106, 34);
+   cursor: pointer;
+}
+.trash:hover {
+   cursor: pointer;
+}
+.logoutBtn, .newButton {
+   color: white;
+   border: 1px solid white;
+   border-radius: 4px;
+   width: 75px;
+}
+.logoutBtn:hover, .newButton:hover {
+   color: #4b4550;
+   background-color: white;
+   border: 1px solid black;
+   cursor: pointer;
+}
