@@ -61,7 +61,7 @@ const App = () => {
          'https://game-review-back-end.herokuapp.com/reviews',
          {
             title:newTitle || `You've just made a Nick Banana`,
-            image:newImage || `https://i.imgur.com/uAdFO6v.png`,
+            image:newImage || `https://images.complex.com/complex/image/upload/c_limit,w_680/fl_lossy,pg_1,q_auto/krabs_rag3do.jpg`,
             releaseDate:newReleaseDate || 2020,
             platform:newPlatform || 'PC',
             category:newCategory || 'Horror',
@@ -82,6 +82,7 @@ const App = () => {
     event.currentTarget.reset();
     setNewUserName('');
     setNewPassword('');
+    handleToggleForm();
     axios.post(
       'https://game-review-back-end.herokuapp.com/users',
       {
@@ -318,9 +319,11 @@ const App = () => {
          </p>
          <p>
             <label>Genre:</label>
+
             <select
                type="text"
                onChange={handleNewCategory}
+               size='1'
             >
                <option>Horror</option>
                <option>RPG</option>
@@ -332,6 +335,7 @@ const App = () => {
                <option>MOBA</option>
                <option>Roguelike</option>
             </select>
+
          </p>
          <p>
             <label>Rating:</label>
@@ -378,7 +382,7 @@ const App = () => {
          {gameReviews.map((review) => {
             const stars = [];
             for(let i=0;i<review.rating;i++){
-               stars.push(<i>&#11088;</i>);
+               stars.push(<i id={review._id}>&#11088;</i>);
             }
             return(
 
