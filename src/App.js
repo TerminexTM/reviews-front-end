@@ -303,7 +303,7 @@ const App = () => {
             />
          </p>
          <p>
-            <label>Platforms:</label>
+            <label>Reviewed On:</label>
             <select
                onChange={handleNewPlatform}
             >
@@ -460,16 +460,34 @@ const App = () => {
                        />
                     </p>
                     <p>
-                       <label>Platforms:</label>
+                       <label>Reviewed On:</label>
                        <select
                           onChange={handleNewPlatform}
                           defaultValue={review.platform}
                        >
-                       <option>PC</option>
                        <option>Mac</option>
-                       <option>Xbox</option>
+                       <option>PC</option>
+                       <option>Nintendo</option>
+                       <option>Super Nintendo</option>
+                       <option>Nintendo 64</option>
+                       <option>Game Cube</option>
+                       <option>Wii</option>
+                       <option>Wii U</option>
+                       <option>Nintendo Switch</option>
+                       <option>GameBoy</option>
+                       <option>GameBoy Advance</option>
+                       <option>DS/3DS</option>
                        <option>Playstation</option>
-                       <option>Switch</option>
+                       <option>Playstation 2</option>
+                       <option>Playstation 3</option>
+                       <option>Playstation 4</option>
+                       <option>Playstation 5</option>
+                       <option>PSP</option>
+                       <option>Playstation Portable</option>
+                       <option>Xbox</option>
+                       <option>Xbox 360</option>
+                       <option>Xbox One</option>
+                       <option>Xbox Series X</option>
                        </select>
                     </p>
                     <p>
