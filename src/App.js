@@ -324,17 +324,18 @@ const App = () => {
                <div id={review._id} value={review._id} onClick={(event) => setViewReviewModal(event.target.id)} className="limit" onMouseOver={toggleOnHoverEvent}>
                <Review data={review} onClose={() => setViewReviewModal(false)}
                viewReviewModal={viewReviewModal}/>
+               <img id={review._id} src={review.image} alt="Bad Source"></img>
                <div className="titleCard">
                   <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'20px'} : {'font-size' : '32px'}}>{review.title}</h1>
                </div>
-                  <img id={review._id} src={review.image} alt="Bad Source"></img>
                   <p id={review._id}>Review Score: {stars}</p>
-                  <p id={review._id}>Released: {review.releaseDate}</p>
+                  <p id={review._id}>Reviewed by: {review.reviewPerson}</p>
                   <div id={review._id} className="dropDown" style= { viewHoverEvent === review._id ? {'visibility' : 'visible', "transition-duration": '.25s' } : {'visibility' : 'hidden', "font-size":"0px"}}>
-                     <p id={review._id}>Platform: {review.platform}</p>
+                    <p id={review._id}>Platform: {review.platform}</p>
+                     <p id={review._id}>Released: {review.releaseDate}</p>
                      <p id={review._id}>Genre: {review.category}</p>
                      {/*<p id={review._id}>Review: {review.review}</p>*/}
-                     <p id={review._id}>Reviewed by: {review.reviewPerson}</p>
+
                      {/*DELETE BUTTON*/}
                      <div className="buttonWrap">
                         <button id={review._id} onClick={() => handleDelete(review)}>Delete Review</button>
