@@ -242,9 +242,14 @@ const App = () => {
       <>
 {/* ============START OF NAV=============================== */}
     <div className="navbar">
-      <h1> 🎮 Two Dudes Reviews 🕹 </h1>
+    <h2 className='logoController'>🎮</h2>
+      <h1> Two Dudes Reviews </h1>
       {toggleLogout ?
-          <button onClick={handleLogout} class='logoutBtn'>Logout</button> :
+         <>
+          <button className="newButton" onClick={toggleNewForm}> New Review </button>
+          <button onClick={handleLogout} class='logoutBtn'>Logout</button>
+          <p>Welcome: {currentUser.username}</p>
+         </> :
           <div class='appFormDiv'>
             {toggleLogin ?
               //login form
@@ -278,9 +283,6 @@ const App = () => {
             <button onClick={handleToggleForm} class='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
           </div>
         }
-       {currentUser.username &&
-         <button onClick={toggleNewForm}> New Review </button>
-       }
     </div>
 {/* ============END OF NAV=============================== */}
       {viewNewForm &&
@@ -409,9 +411,9 @@ const App = () => {
               <div id={review._id} className="greaterCard">
               {currentUser.username &&
               <div className="buttonWrap">
-                 <button className="fas fa-trash-alt" onClick={() => handleDelete(review)}></button>
+                 <button className="fas fa-trash-alt trash" onClick={() => handleDelete(review)}></button>
                  {/*EDIT BUTTON*/}
-                 <button className="fas fa-pencil-alt" value={review._id} onClick={toggleEditForm}></button>
+                 <button className="fas fa-pencil-alt pencil" value={review._id} onClick={toggleEditForm}></button>
               </div>
               }
                <div id={review._id} value={review._id} onClick={(event) => setViewReviewModal(event.target.id)} className="limit" onMouseOver={toggleOnHoverEvent}>
@@ -419,7 +421,7 @@ const App = () => {
                viewReviewModal={viewReviewModal}/>
                <img id={review._id} src={review.image} alt="Bad Source"></img>
                <div className="titleCard">
-                  <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'20px'} : {'font-size' : '24px'}}>{review.title}</h1>
+                  <h1 id={review._id} style={review.title.length >= 15 ? {'font-size':'16px'} : {'font-size' : '28px'}}>{review.title}</h1>
                </div>
 
                   <p id={review._id}>Review Score: {stars}</p>
